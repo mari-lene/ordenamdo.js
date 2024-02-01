@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo de Receitas</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">  
+  <style>
+    .bg-warning {
+      background-color: #ffc107 !important;
+    }
+  </style>
+</head>
+<body class="container-fluid bg-warning" onload="preencheCatalogo()">
+
+  <header class="fundo-Luz-rosa text-center">
+    <h1 class="cor-personalizada">Receitas</h1>
+
+    <!-- Itens do menu -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" :class="{ 'active': paginaAtual === 'ordenando' }" href="ordenando.html">Ordenando</a>
+              
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" :class="{ 'active': paginaAtual === 'receitas' }" href="receitas.html">Catálogo de Receitas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" :class="{ 'active': paginaAtual === 'usuarios' }" href="usuarios.html">Transmissão de Dados VueJs</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Área principal -->
+  <main class="fundo-Luz-rosa">
+    <section class="d-flex flex-wrap" id="pnlCatalogo">
+      <!-- Os cards de receitas serão adicionados aqui -->
+    </section>
+  </main>
+
+  <!-- VueJs para menu -->
+
+  
+<script>
+  // Componentes para cada página
+  const ordenando = {
+    template: '<div><h2>Ordenando Página</h2></div>'
+  };
+
+  const Receitas = {
+    template: '<div><h2>Catalogo de Receitas</h2></div>'
+  };
+
+  const usuarios = {
+    template: '<div><h2>Transmissão de Dados VueJs</h2></div>'
+  };
+
+  new Vue({
+    el: '#app',
+    data: {
+      paginaAtual: 'ordenando' // Página inicial
+    },
+    components: {
+      ordenando,
+      receitas,
+      usuarios,
+    }
+  });
+</script>
+
+ <!-- Rodapé -->
+ <footer class="bg-dark text-white text-center p-1">
+  <p>&copy; Mari 2024...</p>
+</footer>
+
+
+  <script>
+    const receitas = [
+      {
+        titulo: "Carne móida com abóbora",
+        imagem: "C:\Users\mari-\OneDrive\Área de Trabalho\Receita\carnemoidaabobora-e1691861002115-730x365.jpg",
+        ingredientes: ["300 g de carne moda", "600 g de abóbora(cabótia)cortada em cubos", "1 cebola picada", "Salsinha a gosto", "1/2 copo de água", "1/2 Xícara de chá de molho de tomate", " Sal a gosto"],
+        preparo: "Modo de preparo: Reúna todos os ingredientes, leve uma panela ao fogo médio, e, sem óleo, refoge a carne e a cebola; adicione o tomate, a abóbora, o molho de tomate, tempe a panela, e deixe tudo cozinhar por cerca de 15 minutos, ou até a abóbora ficar macia. Se precisar, acescente um pouco de água para que os ingredientes não grudem na panela,Tempere com salsinha e pimenta."
+      },
+      {
+        titulo: "Arroz doce cremoso",
+        imagem: "C:\Users\mari-\OneDrive\Área de Trabalho\Receita\como-fazer-arroz-doce.webp",
+        ingredientes: ["1 Xícara de arroz", "5 Xícaras de leite", "1caixinha de leite condesado", "Açucar a gosto", "2 Xícaras e meia de água", "1 caixinha de creme de leite", "Canela em pó(opcional)"],
+        preparo: "Modo de preparo: coloque o arroz na penela com água, deixe ferver até secar a água. Após coloque o leite, o açucar e o leite condensado, mexendo sempre. Deixe ferver por15 minutos e coloque o creme de leite, mexa. Ferva por mais 5 minutos e pronto, plvilhe a canela. Pode servir quente ou frio conforme o gosto. Agora é só servir."
+      },
+      {
+        titulo: "Strogonofe de frango",
+        imagem: "c:\Users\mari-\OneDrive\Área de Trabalho\Receita\strogonofe de frango.jpg",
+        ingredientes: ["1 colher (sobremesa) de azeite", "400g De tiras de frango", "1 colher de café de sal", "1 colger de café de páprica picante", "3 colheres de sopa de ketchup", "1 colher de sopa de mostarda", "1 colher de sopa de molho imglês", "1 xícara (chá) de champignons cortados ao meio", "1 lata de creme de leite", "3 colheres (sopa) de cebola cortada em cubos pequenos", "1 dente de alho cortado em cubos pequenos."],
+        preparo: "Modo de preparo:   Em uma panela, aqueça o azeite e refogue a cebola e o alho, em seguida acrescente as tiras de frango, Tempere com o sal e com a páprica, Refogue e adicione a mostarda, o ketchup, o molho inglês e os champignons Cozinhe por mais 1-2 minutos e junte o creme de leite (não deixe ferver, apenas aquecer), Sirva ainda quente"
+      },
+      
+    ];
+
+    function getListaIngredientes(ingredientes) {
+  return <ul>${ingredientes.map(ingrediente => <li>${ingrediente}</li>).join('')}</ul>
+    }
+
+    function getCard(receita) {
+      return `
+        <div class="card" style="width: 441px;">
+          <img src="${receita.imagem}" alt="${receita.titulo}" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">${receita.titulo}</h5>
+            <div class="card-text">
+              ${getListaIngredientes(receita.ingredientes)}
+              <hr>
+              <p>${receita.preparo}</p>
+            </div>
+          </div>
+        </div>`;
+    }
+
+    function preencheCatalogo() {
+      const pnlCatalogo = document.getElementById('pnlCatalogo');
+      pnlCatalogo.innerHTML = receitas.map(receita => getCard(receita)).join('');
+    }
+
+    window.onload = preencheCatalogo;
+  </script>
+
+  <!-- jQuery e Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</body>
+</html>
